@@ -1,0 +1,10 @@
+<launch>
+  <arg name="pkg_name" default="hyundai_robot_motion" />
+  <!-- <arg name="hw_connect" default="false" /> -->
+
+  <node name="$(arg pkg_name)_node" pkg="$(arg pkg_name)" type="$(arg pkg_name)_node" respawn="false" output="screen">
+    <param name="planning_plugin" value="ompl_interface/OMPLPlanner" />
+    <!-- <param name="hw_connect" value="$(arg hw_connect)" /> -->
+    <!-- <rosparam command="load" file="$(eval find(arg('pkg_name')) + '/config/config.yaml')" /> -->
+  </node>
+</launch>

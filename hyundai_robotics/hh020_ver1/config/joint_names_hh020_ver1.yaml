@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'lower', 'upper', 'arm', 'wrist', 'end_connector', 'end', ]

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="feeder_width" value="0.5"  /> <!-- x-axis -->
+  <xacro:property name="feeder_depth" value="0.5"  /> <!-- y-axis -->
+  <xacro:property name="feeder_height" value="0.5" /> <!-- z-axis -->
+
+  <xacro:property name="holder_width" value="0.1" /> <!-- x-axis -->
+  <xacro:property name="holder_depth" value="0.1" /> <!-- y-axis -->
+  <xacro:property name="holder_height" value="1.0" /> <!-- z-axis -->
+
+  <xacro:property name="camera_width" value="0.1" /> <!-- x-axis -->
+  <xacro:property name="camera_depth" value="0.3" /> <!-- y-axis -->
+  <xacro:property name="camera_height" value="0.1" /> <!-- z-axis -->
+
+</robot>

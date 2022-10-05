@@ -1,0 +1,17 @@
+<launch>
+   <!--  -->
+   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find abbrobot)/urdf/manipulator.xacro" />
+
+   <!-- send fake joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+  <!-- Gui for joint contol -->
+  <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/> -->
+
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>  
+
+  <!-- 3D visualization -->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find abbrobot)/launch/abbrobot.rviz"/>
+
+</launch>

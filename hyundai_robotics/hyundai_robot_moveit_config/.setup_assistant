@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: hyundai_robot_description
+    relative_path: urdf/robot.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/robot_arm.srdf
+  CONFIG:
+    author_name: Inhyuk
+    author_email: bih0702@hanyang.ac.kr
+    generated_timestamp: 1640504608

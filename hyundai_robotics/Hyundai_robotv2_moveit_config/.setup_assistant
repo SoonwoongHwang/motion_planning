@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: hh020_ver02
+    relative_path: urdf/hh020_ver02.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/hh020_ver02.srdf
+  CONFIG:
+    author_name: Soonwoong Hwang
+    author_email: hswfile@gmail.com
+    generated_timestamp: 1655384985

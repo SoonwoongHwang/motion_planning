@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hh020_ver02">
+  <xacro:include filename="$(find hh020_ver02)/urdf/hh020_ver02.urdf"/>
+
+  <link name="world"/>
+
+<!-- Robot Base -->
+  <link name="robot_base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_base/meshes/base_link.STL" />
+      </geometry>
+      <material name="robot_base_link">
+        <color  rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robot_base/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="world_robot_base" type="fixed">
+    <parent link="world" />
+    <child link="robot_base_link" />
+    <origin xyz="-0.45 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+<!-- Rack -->
+
+  <link name="table">
+    <visual>
+      <origin xyz="0.0  0 0.25" rpy="0 0 0" />
+      <geometry>
+        <box size="0.3 2.0 0.5" />
+      </geometry>
+      <material name="table">
+        <color rgba="0.192 0.192 0.192 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0  0.0 0.25" rpy="0 0 0" />
+      <geometry>
+        <box size="0.3 2.0 0.5" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="world_table" type="fixed">
+    <parent link="world" />
+    <child link="table" />
+    <origin xyz="-1.6 0.0 0.0" rpy="0.0 0.0 0.0" />    <!-- Robot Base 기준 Rack 위치 -->
+  </joint>
+
+
+  <link name="rack_base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rack/meshes/rack_base_link.STL" />
+      </geometry>
+      <material name="rack_base_link">
+        <color  rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rack/meshes/rack_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="table_rack_base" type="fixed">
+    <parent link="table" />
+    <child link="rack_base_link" />
+    <origin xyz="0 0.0 0.5" rpy="0.0 0.0 0.0" />    <!-- Rack 기준 table 위치 -->
+  </joint>
+
+<!-- Machine -->
+  <link name="machine_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://machine_view/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="machine_link">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://machine_view/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="world_machine" type="fixed">
+    <parent link="world" />
+    <child link="machine_link" />
+    <origin xyz="1.75 0.2 0.0" rpy="0.0 0.0 -2.557" />    <!-- Robot Base 기준 machine 위치 -->
+  </joint>
+
+
+<!-- Robot Position -->
+  <joint name="robot_base_hh020" type="fixed">
+    <parent link="robot_base_link" />
+    <child link="base_link" />
+    <origin xyz="0.45 0.0 0.059" rpy="0.0 0.0 0.0" />    <!-- Robot Base 기준 manipulator 위치 -->
+  </joint>
+
+
+<!-- Addition End Effector Frame -->
+  <link name="end_effector_Virtualframe" />
+  
+  <joint name="end_effector_Virtualjoint" type="fixed">
+    <parent link="wrist_R1_Link" />
+    <child link="end_effector_Virtualframe" />
+    <origin xyz="0.122 0 -0.096" rpy="0 0 0" />
+  </joint>
+  
+<!-- Addition Vision Frame -->
+  <link name="Vision_Virtualframe" />
+  
+  <joint name="Vision_Virtualjoint" type="fixed">
+    <parent link="end_effector_Virtualframe" />
+    <child link="Vision_Virtualframe" />
+    <origin xyz="-0.09855 -0.0095 0.1135" rpy="-1.570796 0 -1.570796" />
+  </joint> 
+  
+</robot>

@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot name="manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Import robot dimensions property -->
+  <xacro:include filename="$(find abbrobot)/urdf/properties.xacro" />
+
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find abbrobot)/urdf/materials.xacro" />
+
+  <!-- Import Robot description: IRB1200-5-0.9 -->
+  <xacro:include filename="$(find abbrobot)/urdf/abb_irb1200_5_90.xacro"/>
+  <!-- <xacro:abb_irb1200_5_90 robot_name=""/> -->
+
+  <link name="world"/>
+   
+  <joint name="world_base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="world"/>
+    <child link="base_footprint"/>
+  </joint>
+
+  <link name="base_footprint" />
+
+  <joint name="base_footprint_link_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+    
+  <!-- Robot hand base-->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 ${feeder_height/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${feeder_width} ${feeder_depth} ${feeder_height}"/>
+      </geometry>
+      <material name="brown"/>
+    </visual>
+  </link>
+
+  <joint name="base_holder_link_joint" type="fixed">
+    <origin xyz="0 0 ${feeder_height}" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="robot_base_link"/>
+  </joint>
+
+  <link name="robot_base_link">
+    <visual>
+      <origin xyz="0 0 ${camera_height/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${camera_width} ${camera_depth} ${camera_height}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <!-- IBR-1200 -->   
+  <xacro:abb_irb1200_5_90 robot_name="abb_irb1200_5_90" parent="robot_base_link" />
+
+  <!-- <joint name="robot_camera_link_joint" type="fixed">
+    <origin xyz="0 0 0.05" rpy="0 0 0" />
+    <parent link="abb_irb1200_5_90link_5"/>
+    <child link="camera_link"/>
+  </joint>
+    
+  <link name="camera_link">
+    <visual>
+      <origin xyz="0 0 ${camera_height/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${camera_width} ${camera_depth} ${camera_height}"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+  </link> -->
+
+
+  <!-- <xacro:iiwa14 hardware_interface="$(arg hardware_interface)" robot_name="iiwa14" parent="base_link">
+    <origin xyz="0 ${robot_base_size/2} ${robot_base_height-0.2}" rpy="${-pi/2} 0 0" />
+  </xacro:iiwa14> -->
+
+  
+
+  <!-- Camera using Intel Realsense D455-->
+  <!-- Holder for camera -->
+  <!-- <link name="holder_link">
+    <visual>
+      <origin xyz="0 0 ${holder_height/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${holder_width} ${holder_depth} ${holder_height}"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+  <joint name="holder_camera_link_joint" type="fixed">
+    <origin xyz="0 0 ${holder_height}" rpy="0 0 0" />
+    <parent link="holder_link"/>
+    <child link="robot_base_link"/>
+  </joint> -->
+
+  
+
+</robot>

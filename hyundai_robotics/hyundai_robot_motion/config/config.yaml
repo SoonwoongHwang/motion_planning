@@ -1,0 +1,100 @@
+# Environment
+package_name: "preparatory_manipulation"
+model_package_name: "assembly_robot_description" # package name which has STL mesh file
+model_path: "/home/boory/catkin_ws/src/Assembly_UR5e_workspace/assembly_robot_description/stl/target_object/" # package path for Open3D which has STL mesh file
+global_link: "world"
+robs_group_name: "rob1_rob2_arm" # planning group for two robot arms
+rob1_group_name: "rob1_arm" # planning group for rob1
+rob2_group_name: "rob2_arm" # planning group for rob2
+grip1_group_name: "rob1_hand" # planning group for gripper of rob1
+grip2_group_name: "rob2_hand" # planning group for gripper of rob2
+block_animation: false # true: wait until animation is completed. WARN: Do not 'false' when paths are derived (BUG)
+save_path_bag: true # true: save integrated path as bag file
+load_path_bag: false # true: load integrated path
+load_ith_path: -1 # load ith integrated path. if it is negative number, show all robot motions in simulation #[ver2] chair(0/2) shelf(0/3/8) stool(1) #[ver1] chair(0/2) shelf(0/2/8) stool(1)
+aruco: false # true: ArUco is enable (vision)
+priority_regrasp: false # true: if a regrasp motion exists, this motion will be performed / false: 'load_ith_path' will be executed
+save_rotation_bag: false # true: save rotation axis candidate (both vertice of rotation axis / rotation matrix / max rotation step)
+load_rotation_bag: true # true: load rotation axis candidate (both vertice of rotation axis / rotation matrix / max rotation step)
+
+# Object
+rotation_axis_min: 0.2 #0.1 # minimum value of rotation axis length
+rotation_angle_step: 0.05 # rotation angle[rad] step
+rotation_axis_height: 0.015 # allowed maximum height from table 
+weight_length: 1.0 # weight factor of rotation axis about length
+weight_angle: 1.0 # weight factor of rotation axis about maximum of rotaion angle
+distance_axis_grasp: 0.05 # threshold of distance between grasp pose & rotation axis
+target_object_file: "shelf_side_part" # "chair_side_part" "shelf_side_part" "stool_side_part" # file name except '.STL'
+arrange_object: false # true: arrange object by pinch grasping the object 
+
+# Robot
+rob1:
+  initial_joint: [-1.570796, -1.047197, -1.570796, -1.570796, 1.570796, 0.0] # active joints
+  power_grasp_name: rob1_power_point
+  precision_grasp_name: rob1_precision_point
+  gripper_base: "rob1_robotiq_arg2f_base_link"
+  # #### chair (STEFAN) ####
+  # grasp_rot: [0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0] # (downward) rotation matrix of grasp pose w.r.t object frame
+  # # grasp_rot: [0.0, -1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, -1.0] # (upward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_trans: [-0.01, 0.08, 0.0] #[-0.01, 0.08, -0.002] # translation of grasp pose w.r.t object frame
+  # sup_grasp_rot: [-0.9992, -0.0395, -0.0032, 0.0397, -0.999, -0.0229, -0.0023, -0.023, 0.9997] # rotation matrix of suppport grasp pose w.r.t object frame
+  # sup_grasp_trans: [0.326014, 0.402245, 0.0381144] # translation of support grasp pose w.r.t object frame
+  # marker_rot: [-0.9992, -0.0395, -0.0032, 0.0397, -0.999, -0.0229, -0.0023, -0.023, 0.9997] # rotation matrix of marker w.r.t object frame
+  # marker_trans: [0.326014, 0.392245, 0.0381144] #[0.326014, 0.402245, 0.0381144] # translation of marker w.r.t object frame
+  #### shelf ####
+  grasp_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] # (downward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_rot: [-1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0] # (upward) rotation matrix of grasp pose w.r.t object frame
+  grasp_trans: [0.18, -0.7, -0.01] # translation of grasp pose w.r.t object frame
+  sup_grasp_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] # rotation matrix of suppport grasp pose w.r.t object frame
+  sup_grasp_trans: [0.18, -0.365, -0.01] # translation of support grasp pose w.r.t object frame
+  marker_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] # rotation matrix of marker w.r.t object frame
+  marker_trans: [0.18, -0.365, -0.01] # translation of marker w.r.t object frame
+  # #### stool ####
+  # grasp_rot: [-0.0746, 0.9972, 0.0032, 0.9972, 0.0744, 0.0229, 0.0226, 0.0049, -0.9997] # (downward) rotation matrix of grasp pose w.r.t object frame
+  # # grasp_rot: [0.0746, 0.9972, -0.0032, -0.9972, 0.0744, -0.0229, -0.0226, 0.0049, 0.9997] # (upward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_trans: [0.23, -0.425, -0.015] #[0.23, -0.425, -0.012] # translation of grasp pose w.r.t object frame
+  # sup_grasp_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] #[0.9999, 0.0105, 0.0032, 0.0103, -0.9999, 0.0229, 0.0034, -0.0229, -0.9997] # rotation matrix of suppport grasp pose w.r.t object frame
+  # sup_grasp_trans: [0.105, -0.02, -0.016] #[0.105, -0.02, -0.012] # translation of support grasp pose w.r.t object frame
+  # marker_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] # rotation matrix of marker w.r.t object frame
+  # marker_trans: [0.105, -0.02, -0.012] # translation of marker w.r.t object frame
+rob2:
+  initial_joint: [-1.570796, -1.047197, -1.570796, -1.570796, 1.570796, 0.0] # active joints
+  power_grasp_name: rob2_power_point
+  precision_grasp_name: rob2_precision_point
+  gripper_base: "rob2_robotiq_arg2f_base_link"
+  # #### chair (STEFAN) ####
+  # # grasp_rot: [-0.1736, 0.9848, 0.0, -0.9848, -0.1736, 0.0, 0.0, 0.0, 1.0] # (downward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_rot: [0.1736, 0.9848, 0.0, 0.9848, -0.1736, 0.0, 0.0, 0.0, -1.0] # (upward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_trans: [0.420014, 0.732245, 0.034] #[0.430014, 0.732245, 0.034] # translation of grasp pose w.r.t object frame
+  # sup_grasp_rot: [-0.9992, -0.0395, -0.0032, 0.0397, -0.999, -0.0229, -0.0023, -0.023, 0.9997] # rotation matrix of suppport grasp pose w.r.t object frame
+  # sup_grasp_trans: [0.326014, 0.402245, 0.0381144] # translation of support grasp pose w.r.t object frame
+  #### shelf ####
+  # grasp_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] # (downward) rotation matrix of grasp pose w.r.t object frame
+  grasp_rot: [-1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0] # (upward) rotation matrix of grasp pose w.r.t object frame
+  grasp_trans: [0.18, -0.03, -0.01] # translation of grasp pose w.r.t object frame
+  sup_grasp_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] # rotation matrix of suppport grasp pose w.r.t object frame
+  sup_grasp_trans: [0.18, -0.365, -0.01] # translation of support grasp pose w.r.t object frame
+  # #### stool ####
+  # # grasp_rot: [-0.0894, -0.996, 0.0032, -0.9959, 0.0896, 0.0229, -0.0231, -0.0011, -0.9997] # (downward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_rot: [0.0894, -0.996, -0.0032, 0.9959, 0.0896, -0.0229, 0.0231, -0.0011, 0.9997] # (upward) rotation matrix of grasp pose w.r.t object frame
+  # grasp_trans: [0.01, -0.105, -0.015] #[-0.01, -0.18, -0.015] #[0.01, -0.105, -0.015] # translation of grasp pose w.r.t object frame
+  # sup_grasp_rot: [1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, -1.0] #[0.9999, 0.0105, 0.0032, 0.0103, -0.9999, 0.0229, 0.0034, -0.0229, -0.9997] # rotation matrix of suppport grasp pose w.r.t object frame
+  # sup_grasp_trans: [0.105, -0.02, -0.016] #[0.105, -0.02, -0.012] # translation of support grasp pose w.r.t object frame
+grip1:
+  initial_joint: [0.0] # active joints
+  pregrasp_trans: -0.1 # length from grasp pose along to +z-axis
+grip2:
+  initial_joint: [0.0] # active joints
+  pregrasp_trans: -0.1 # length from grasp pose along to +z-axis
+max_vel_factor: 0.1 #0.12 # time parameterization
+max_acc_factor: 0.0001 # time parameterization
+jt_revolute: 0.6 #0.4 # jump threshold of revolute
+jt_prismatic: 0.05 # jump threshold of prismatic
+cart_max_trans: 0.01 #0.005 # max translation in Cartesian space between consecutive points
+cart_max_rot: 0.06 #0.05 # max rotation in Cartesian space between consecutive points
+attempt_IK_max: 50 #70 # maximum attempt times to get IK solutions
+attempt_IK_max_sim: 50 #30 #50 # maximum attempt times to get IK solutions (getSimIKsolution)
+same_IK_succession: 30 #15 # maximum allowed same IK solution in a row (getIKsolution)
+ik_one_unique: 10 # the maximum number of unique IK solutions for one robot arm
+ik_two_unique: 30 #20 #25 # the maximum number of unique IK solutions for two robot arm
+planning_attempts: 3 #10 # attempt times to derive path

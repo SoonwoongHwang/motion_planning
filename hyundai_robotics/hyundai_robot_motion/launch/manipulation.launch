@@ -1,0 +1,19 @@
+<launch>
+  <arg name="pkg_name" default="hyundai_robot_motion" />
+  <arg name="ns_name" default="two" />
+  <arg name="hw_connect" default="false" />
+
+  <node ns="$(arg ns_name)" name="$(arg pkg_name)_manipulation" pkg="$(arg pkg_name)" type="$(arg pkg_name)_manipulation" respawn="false" output="screen">
+    <param name="planning_plugin" value="ompl_interface/OMPLPlanner" />
+    <param name="ns_name" value="$(arg ns_name)" />
+    <param name="hw_connect" value="$(arg hw_connect)" />
+    <rosparam command="load" file="$(eval find(arg('pkg_name')) + '/config/config.yaml')" />
+  </node>
+
+  <!-- Set dynamic configuration --> 
+  <node name="dynparam_rgb" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters /$(arg ns_name)/$(arg pkg_name)_manipulation/ompl">
+    <!-- For collision check -->
+    <param name="maximum_waypoint_distance" type="double" value="0.2" /> 
+  </node>
+
+</launch>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="hh020_ver02">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.094837 0.00034593 0.080005"
+        rpy="0 0 0" />
+      <mass
+        value="17.103" />
+      <inertia
+        ixx="0.13544"
+        ixy="0.00059306"
+        ixz="0.015664"
+        iyy="0.31603"
+        iyz="3.3743E-05"
+        izz="0.37543" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link
+    name="lower_Link">
+    <inertial>
+      <origin
+        xyz="0.072067 -0.0086463 0.18762"
+        rpy="0 0 0" />
+      <mass
+        value="19.865" />
+      <inertia
+        ixx="0.17864"
+        ixy="-0.018812"
+        ixz="-0.061412"
+        iyy="0.23303"
+        iyz="-0.021951"
+        izz="0.18982" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/lower_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/lower_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="lower_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.162"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lower_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.229"
+      upper="3.229"
+      effort="0"
+      velocity="3.316" />
+  </joint>
+
+  <link
+    name="upper_Link">
+    <inertial>
+      <origin
+        xyz="-0.00010751 0.00083686 0.36285"
+        rpy="0 0 0" />
+      <mass
+        value="11.176" />
+      <inertia
+        ixx="0.62235"
+        ixy="5.5619E-06"
+        ixz="0.00028138"
+        iyy="0.64621"
+        iyz="0.010765"
+        izz="0.038783" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/upper_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/upper_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="upper_joint"
+    type="revolute">
+    <origin
+      xyz="0.16 0.1479 0.2846"
+      rpy="0 1.5708 0" />
+    <parent
+      link="lower_Link" />
+    <child
+      link="upper_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-1.222"
+      upper="3.403"
+      effort="0"
+      velocity="3.142" />
+  </joint>
+
+  <link
+    name="arm_Link">
+    <inertial>
+      <origin
+        xyz="0.042152 -0.13965 0.080961"
+        rpy="0 0 0" />
+      <mass
+        value="12.299" />
+      <inertia
+        ixx="0.077578"
+        ixy="0.0039974"
+        ixz="-0.014934"
+        iyy="0.095659"
+        iyz="0.010098"
+        izz="0.073131" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/arm_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/arm_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.0164 0.77"
+      rpy="0 0 0" />
+    <parent
+      link="upper_Link" />
+    <child
+      link="arm_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-1.396"
+      upper="3.141"
+      effort="0"
+      velocity="3.316" />
+  </joint>
+
+  <link
+    name="wrist_R2_Link">
+    <inertial>
+      <origin
+        xyz="0.33419 -0.0048996 9.1409E-05"
+        rpy="0 0 0" />
+      <mass
+        value="6.5587" />
+      <inertia
+        ixx="0.017572"
+        ixy="0.0048652"
+        ixz="-5.6686E-05"
+        iyy="0.18161"
+        iyz="-9.4766E-06"
+        izz="0.18844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/wrist_R2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/wrist_R2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_R2_joint"
+    type="revolute">
+    <origin
+      xyz="0.2135 -0.1315 0.14"
+      rpy="0 0 0" />
+    <parent
+      link="arm_Link" />
+    <child
+      link="wrist_R2_Link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.403"
+      upper="3.403"
+      effort="0"
+      velocity="6.632" />
+  </joint>
+  <link
+    name="wrist_B_Link">
+    <inertial>
+      <origin
+        xyz="0.00088677 -0.061435 0.00015943"
+        rpy="0 0 0" />
+      <mass
+        value="2.2391" />
+      <inertia
+        ixx="0.0040127"
+        ixy="-2.7735E-06"
+        ixz="-6.8315E-06"
+        iyy="0.0049003"
+        iyz="-7.8348E-06"
+        izz="0.0052929" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/wrist_B_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/wrist_B_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_B_joint"
+    type="revolute">
+    <origin
+      xyz="0.5865 0.0615 0"
+      rpy="0 0 0" />
+    <parent
+      link="wrist_R2_Link" />
+    <child
+      link="wrist_B_Link" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-2.356"
+      upper="2.356"
+      effort="0"
+      velocity="6.632" />
+  </joint>
+  <link
+    name="wrist_R1_Link">
+    <inertial>
+      <origin
+        xyz="0.063967 -2.7999E-05 -0.06897"
+        rpy="0 0 0" />
+      <mass
+        value="0.78578" />
+      <inertia
+        ixx="0.00089496"
+        ixy="4.8187E-07"
+        ixz="0.00016038"
+        iyy="0.00099924"
+        iyz="2.2945E-06"
+        izz="0.0010637" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/wrist_R1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hh020_ver02/meshes/wrist_R1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_R1_joint"
+    type="revolute">
+    <origin
+      xyz="0.10427 -0.0615 0"
+      rpy="0 0 0" />
+    <parent
+      link="wrist_B_Link" />
+    <child
+      link="wrist_R1_Link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6.283"
+      upper="6.283"
+      effort="0"
+      velocity="10.472" />
+  </joint>
+</robot>

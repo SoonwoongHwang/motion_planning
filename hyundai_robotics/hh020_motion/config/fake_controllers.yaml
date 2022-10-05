@@ -1,0 +1,15 @@
+controller_list:
+  - name: fake_HRobotArm_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - lower
+      - upper
+      - arm
+      - wrist
+      - end_connector
+      - end
+initial:  # Define initial robot poses per group
+#  - group: HRobotArm
+#    pose: home
+
+  []

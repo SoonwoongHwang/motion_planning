@@ -1,0 +1,16 @@
+<launch>
+  <arg name="pipeline" default="ompl" />
+  <arg name="debug" default="false" />
+  
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find Hyundai_robotv2_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find Hyundai_robotv2_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find hyundai_robot_motion)/config/rviz_config.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+</launch>
