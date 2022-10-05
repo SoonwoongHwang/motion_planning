@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_hh020_arm_controller
+    type: $(arg execution_type)
+    joints:
+      - lower_joint
+      - upper_joint
+      - arm_joint
+      - wrist_R2_joint
+      - wrist_B_joint
+      - wrist_R1_joint
+initial:  # Define initial robot poses.
+  - group: hh020_arm
+    pose: home
